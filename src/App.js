@@ -2,13 +2,11 @@ import { useRef, useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import './components/loveLetter.css';
-import song from './Glimmer of Blooms - I Cant Get You Out Of My Head (LYRICS).mp3';
+import song from "./birth.mp3";
 import { TypeAnimation } from 'react-type-animation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import img2 from "./tas.jpg"
-
-
 
 function App() {
   const audioRef = useRef(null);
@@ -18,7 +16,7 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
 
-  const displayName = name.trim() || 'Tasnim Lejri';
+  const displayName = name.trim() || 'Tasnim';
 
   useEffect(() => {
     if (audioRef.current) {
@@ -32,8 +30,6 @@ function App() {
       }
     }
   }, [step]);
-
-  // Envelope open only on click, no effect needed here
 
   const sendResponse = async (type) => {
     try {
@@ -60,7 +56,6 @@ function App() {
   return (
     <div className="container">
       <ToastContainer position="top-center" autoClose={3000} />
-      
 
       <audio ref={audioRef} loop>
         <source src={song} type="audio/mpeg" />
@@ -68,9 +63,9 @@ function App() {
 
       {step === 0 && (
         <div className="intro fade-in">
-          <h1 className="intro-title">✨ Welcome ✨</h1>
-          <img src={img2} alt="Tasnim Lejri" className="profile-img" />
-          <p className="intro-text">A little something made just for you, {displayName}...</p>
+          <h1 className="intro-title">🎉 Hello Tasnim</h1>
+          <img src={img2} alt={displayName} className="profile-img" />
+          <p className="intro-text">A special little surprise for you, {displayName}...</p>
           <button onClick={() => setStep(1)} className="btn-primary">Begin</button>
         </div>
       )}
@@ -78,8 +73,8 @@ function App() {
       {step === 1 && (
         <div className="card fade-in">
           <h1>Welcome 💌</h1>
-          <p>Just a little message before we continue...</p>
-          <p>I'm happy you're here 😊</p>
+          <p>We are so excited to celebrate your special day!</p>
+          <p>Get ready for some surprises 😊</p>
           <button onClick={() => setStep(2)} className="btn-primary">Continue</button>
           <BackButton />
         </div>
@@ -90,10 +85,9 @@ function App() {
           <h1>Hey {displayName} 🌸</h1>
           <TypeAnimation
             sequence={[
-              `${displayName}...`,
+              `Happy Birthday ${displayName}! 🎉`,
               1000,
-              'Rani nheb ngollek haja...',
-           
+              'Wishing you a day full of joy, laughter, and love!',
             ]}
             wrapper="span"
             speed={50}
@@ -106,19 +100,10 @@ function App() {
       )}
 
       {step === 3 && (
-        
         <div className="card fade-in">
-                <div className="floating-hearts">💖 💕 💘 💝 💞</div>
-
-          
-          <h1>Confession 💞</h1>
-          <p>
-
-
-            Hey Tasnim, I don’t know if you’re seeing someone, and of course I completely respect that if you are. I just felt like I had to say to you seem like someone truly special. There’s something about your presence, your vibe… that really stood out to me. You’re incredibly beautiful, and your smile is honestly the cutest. I’d genuinely love the chance to get to know you, if that’s something you’d feel comfortable with. Either way, I hope life brings you all the joy and peace you deserve ✨
-
-
-          </p>
+          <div className="floating-hearts">💖 💕 💘 💝 💞</div>
+          <h1>Celebration 🎊</h1>
+          <p>May your birthday be as wonderful as you are! Enjoy every moment and make unforgettable memories today ✨</p>
           <button onClick={() => setStep(4)} className="btn-primary mt-2">Continue</button>
           <BackButton />
         </div>
@@ -126,8 +111,7 @@ function App() {
 
       {step === 4 && (
         <div className="card fade-in confession-bg">
-                <div className="floating-hearts">💖 💕 💘 💝 💞</div>
-
+          <div className="floating-hearts">💖 💕 💘 💝 💞</div>
           <div className="confession-flex">
             <div className="confession-left">
               <div className="envlope-wrapper">
@@ -142,9 +126,7 @@ function App() {
 
                   <div className="letter">
                     <div className="words line1">To: {displayName}</div>
-                    <div className="words line2">Your smile is literally the cutest thing I have ever seen in my life.
-</div>
-                  
+                    <div className="words line2">Hope this little note brightens your day and brings a big smile to your face! 🎁</div>
                   </div>
 
                   <div className="hearts">
@@ -163,89 +145,34 @@ function App() {
       )}
 
       {step === 5 && (
-  <div className="card fade-in">
-          <div className="floating-hearts">💖 💕 💘 💝 💞</div>
-
-    <h1>So… how do you feel about this?</h1>
-    <div className="choices">
-      <button
-        className="yes"
-        onClick={() => {
-          sendResponse('yes');
-          setStep(6);
-        }}
-      >
-        Absolutely! 💕
-      </button>
-      <button
-        className="no"
-        onClick={() => {
-          sendResponse('no');
-          setStep(7);
-        }}
-      >
-        Not really 🙁
-      </button>
-    </div>
-    <BackButton />
-  </div>
-)}
-
-{step === 6 && (
-  <div className="card fade-in">
-          <div className="floating-hearts">💖 💕 💘 💝 💞</div>
-
-    <h1>Woohoo! 💖</h1>
-    <p>This makes me so happy! Can’t wait to chat and see what’s next ✨</p>
-    <button onClick={() => setStep(8)} className="btn-primary mt-2">Send me a surprise 🎁</button>
-    <BackButton />
-  </div>
-)}
-
-
-      {step === 7 && (
         <div className="card fade-in">
-                <div className="floating-hearts">💖 💕 💘 💝 💞</div>
-
-          <h1>It’s okay 😊</h1>
-          <p>Thanks for taking time to read this... I just needed to say it ❤️</p>
-          <button onClick={() => setStep(8)} className="btn-primary mt-2">Send me a message</button>
+          <div className="floating-hearts">💖 💕 💘 💝 💞</div>
+          <h1>Do you like the surprise?</h1>
+          <div className="choices">
+            <button
+              className="yes"
+              onClick={() => {
+                sendResponse('yes');
+                setStep(6);
+              }}
+            >
+              Absolutely! 💕
+            </button>
+            <button
+              className="no"
+              onClick={() => {
+                sendResponse('no');
+                setStep(7);
+              }}
+            >
+              Not really 🙁
+            </button>
+          </div>
           <BackButton />
         </div>
       )}
 
-      {step === 8 && (
-        <div className="card fade-in">
-                <div className="floating-hearts">💖 💕 💘 💝 💞</div>
-
-          <h1>Send me a message  🥰</h1>
-          <textarea
-            placeholder="Type something sweet..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            rows={4}
-            className="text-area"
-          />
-          <button
-            onClick={async () => {
-              if (!message.trim()) {
-                toast.warn('Please type a message.');
-                return;
-              }
-              await sendResponse('message');
-              toast.success('Thank you ❤️');
-              setMessage('');
-              setStep(0);
-              setIsOpen(false); // close envelope when restart
-            }}
-            className="btn-primary mt-2"
-          >
-            
-            Send
-          </button>
-          <BackButton />
-        </div>
-      )}
+     
     </div>
   );
 }
